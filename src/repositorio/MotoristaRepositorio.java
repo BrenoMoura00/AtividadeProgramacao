@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class UsuarioRepositorio implements IUserRepositorio { // Altere para IUserRepositorio
-    private List<Motorista> usuarioList;
+public class MotoristaRepositorio implements IUserRepositorio { // Altere para IUserRepositorio
+    private List<Motorista> motoristaLista;
 
-    public UsuarioRepositorio() {
-        this.usuarioList = new ArrayList<>();
+    public MotoristaRepositorio() {
+        this.motoristaLista = new ArrayList<>();
     }
 
     @Override
     public void salvar(Motorista usuario) {
-        usuarioList.add(usuario);
+        motoristaLista.add(usuario);
     }
 
     @Override
     public void alterar(Motorista usuario) {
-        for (Motorista usuario1 : usuarioList) {
+        for (Motorista usuario1 : motoristaLista) {
             if (usuario.getId() == usuario1.getId()) {
-                usuarioList.remove(usuario1);
-                usuarioList.add(usuario);
+                motoristaLista.remove(usuario1);
+                motoristaLista.add(usuario);
                 break; // Adicionado para evitar exceções
             }
         }
@@ -30,7 +30,7 @@ public class UsuarioRepositorio implements IUserRepositorio { // Altere para IUs
 
     @Override
     public void deletar(int id) {
-        Iterator<Motorista> iterator = usuarioList.iterator();
+        Iterator<Motorista> iterator = motoristaLista.iterator();
         while (iterator.hasNext()) {
             Motorista usuario = iterator.next();
             if (usuario.getId() == id) {
@@ -42,12 +42,12 @@ public class UsuarioRepositorio implements IUserRepositorio { // Altere para IUs
 
     @Override
     public List<Motorista> listar() {
-        return usuarioList;
+        return motoristaLista;
     }
 
     @Override
     public Motorista listarPorId(int id) {
-        for (Motorista usuario : usuarioList) {
+        for (Motorista usuario : motoristaLista) {
             if (usuario.getId() == id) {
                 return usuario;
             }

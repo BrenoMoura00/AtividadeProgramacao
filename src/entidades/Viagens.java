@@ -5,12 +5,15 @@ public class Viagens {
     private int mediaPassageiros;
     private int horasViagem;
     private String rotas;
+    private double kmPorViagem;
 
-    public Viagens(int numViagem, int mediaPassageiros, int horasViagem, String rotas) {
+
+    public Viagens(int numViagem, int mediaPassageiros, int horasViagem, String rotas, double kmPorViagem) {
         this.numViagem = numViagem;
         this.mediaPassageiros = mediaPassageiros;
         this.horasViagem = horasViagem;
         this.rotas = rotas;
+        this.kmPorViagem = kmPorViagem;
     }
 
     public Viagens(Viagens viagens) {
@@ -18,6 +21,7 @@ public class Viagens {
         this.mediaPassageiros = viagens.mediaPassageiros;
         this.horasViagem = viagens.horasViagem;
         this.rotas = viagens.rotas;
+        this.kmPorViagem = viagens.kmPorViagem;
     }
 
 
@@ -37,13 +41,18 @@ public class Viagens {
         return rotas;
     }
 
+    public double getKmPorViagem() {
+        return kmPorViagem;
+    }
+
     @Override
     public String toString() {
-        return "Viagens{" +
+        return "Viagens |" +
                 "numViagem=" + numViagem +
-                ", mediaPassageiros=" + mediaPassageiros +
-                ", horasViagem=" + horasViagem +
-                ", rotas='" + rotas + '\'' +
-                '}';
+                ", mediaPassageiros: " + mediaPassageiros +
+                ", horasViagem: " + horasViagem +
+                ", rotas: '" + rotas +
+                "Quilometro Por viagem: " + kmPorViagem +
+                '|';
     }
 }

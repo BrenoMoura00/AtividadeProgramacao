@@ -1,28 +1,24 @@
-import entidades.Motorista;
-import entidades.Viagens;
-import repositorio.UsuarioRepositorio;
-import validacao.ValidarCnh;
-import java.util.List;
+package entidades;
+
+import repositorio.MotoristaRepositorio;
+import servico.MotoristaServico;
 
 public class AreaDeTeste {
     public static void main(String[] args) {
-        Viagens viagens = new Viagens(1, 35, 1000, "principal");
-        Motorista usuario = new Motorista(1, "Breno", "2763445769", "A", 2300.45, 45, 12, viagens );
-        UsuarioRepositorio usuarioRep = new UsuarioRepositorio();
-        ValidarCnh validador = new ValidarCnh();
+        Viagens viagens = new Viagens(1, 35, 1000, "principal", 100.5);
+        Motorista motorista = new Motorista(1, "Breno", "12345678900", "A", 2300.45, 45, 12, viagens);
+        MotoristaRepositorio motoristaRepositorio = new MotoristaRepositorio();
+        MotoristaServico motoristaServico = new MotoristaServico(motoristaRepositorio);
 
-        usuario.validarCnh(validador);
+        motoristaServico.salvar(motorista);
 
-        System.out.println(usuario);
+        System.out.println("----------Lista-de-Motoristas----------");
+        System.out.println(motoristaServico.listar());
 
-        usuarioRep.salvar(usuario);
+        double salario = ((motorista.getAnosXP() * 0.1) + (viagens.getKmPorViagem() * 0.5) );
+        System.out.println("Bônus pela viagem: " + salario);
 
-        List<Motorista> usuarioList = usuarioRep.listar();
-        System.out.println("------------Add------------");
-        System.out.println(usuarioList);
 
-        usuarioRep.deletar(1);
-        System.out.println("------------deletado------------");
-        System.out.println(usuarioList);
+
     }
 }
