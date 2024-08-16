@@ -1,17 +1,23 @@
-package entidades;
-
+import entidades.Motorista;
+import entidades.Viagens;
 import repositorio.UsuarioRepositorio;
-
+import validacao.ValidarCnh;
 import java.util.List;
 
 public class AreaDeTeste {
     public static void main(String[] args) {
-        Usuario usuario = new Usuario(1, "Breno", "123213123", "A", "Rota principal", 2300.45, 23, 2, 182, 35, 1092);
-        UsuarioRepositorio usuarioRep = new UsuarioRepositorio(); // Cria a instância do repositório
+        Viagens viagens = new Viagens(1, 35, 1000, "principal");
+        Motorista usuario = new Motorista(1, "Breno", "2763445769", "A", 2300.45, 45, 12, viagens );
+        UsuarioRepositorio usuarioRep = new UsuarioRepositorio();
+        ValidarCnh validador = new ValidarCnh();
+
+        usuario.validarCnh(validador);
+
+        System.out.println(usuario);
 
         usuarioRep.salvar(usuario);
 
-        List<Usuario> usuarioList = usuarioRep.listar();
+        List<Motorista> usuarioList = usuarioRep.listar();
         System.out.println("------------Add------------");
         System.out.println(usuarioList);
 

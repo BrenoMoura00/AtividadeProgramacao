@@ -1,36 +1,33 @@
-package service;
+package servico;
 
-import entidades.Usuario;
+import entidades.Motorista;
 import repositorio.UsuarioRepositorio;
+import validacao.IValidacao;
+import java.util.List;
 
-public class UsuarioService {
+public class UsuarioServico {
     private UsuarioRepositorio usuarioRepositorio;
+    private List<IValidacao> validacao;
 
-    public UsuarioService(UsuarioRepositorio repositorio) {
+    public UsuarioServico(UsuarioRepositorio repositorio) {
         this.usuarioRepositorio = repositorio;
-
     }
 
-    public UsuarioService() {
+    public UsuarioServico() {}
 
-    }
-
-    public void salvar(Usuario usuario) {
-        if (usuario.getId() < 18) {
-            throw new IllegalArgumentException("Usuário só pode ser cadastrado se for maior de 18 anos");
-        }
-
-        usuarioRepositorio.salvar(usuario);
+    public void salvar(Motorista motorista) {
+        this.validacao.forEach(v -> v.validar(motorista));
+        usuarioRepositorio.salvar(motorista);
     }
 
     public void deletar(int id) {
         usuarioRepositorio.deletar(id);
     }
 
-    public void alterar(Usuario usuario) {
+    public void alterar(Motorista usuario) {
         boolean usuarioEncontrado = false;
 
-        for (Usuario u : usuarioRepositorio.listar()) {
+        for (Motorista u : usuarioRepositorio.listar()) {
             if (u.getId() == usuario.getId()) {
                 usuarioEncontrado = true;
                 break;

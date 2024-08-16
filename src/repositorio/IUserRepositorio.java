@@ -1,13 +1,13 @@
 package repositorio;
 
-import entidades.Usuario;
+import entidades.Motorista;
 
 import java.util.List;
 
 public interface IUserRepositorio {
-    void salvar(Usuario usuario);
-    void alterar(Usuario usuario);
+    void salvar(Motorista usuario);
+    void alterar(Motorista usuario);
     void deletar(int id);
-    List<Usuario> listar();
-    Usuario listarPorId(int id);
+    List<Motorista> listar();
+    Motorista listarPorId(int id);
 }
